@@ -890,7 +890,7 @@ textarea {
 			
 			$.ajax({
 				async : false,
-				url : "/Project/qna/qna_comment.jsp",
+				url : "<%=request.getContextPath()%>/qna/qna_comment.jsp",
 				data : { qcomment_num : ${dto.qna_num } },
 				datatype : "xml",    // 결과 데이터 타입
 				success : function(data) {
@@ -1036,10 +1036,15 @@ textarea {
 		$("#commentBtn").on("click", function() {
 			
 			if(${!empty userId}){
+				
+			console.log("num 값 >>> " + ${dto.qna_num});
+			console.log("writer 값 >>> " + $("#co_writer").val());
+			console.log("cont 값 >>> " + $("#co_content").val());
+			console.log("co_code 값 >>> " + $("#co_code").val());
 			
 			$.ajax({
 				async : false,
-				url : "/Project/qna_comment_insert_ok.do",
+				url : "<%=request.getContextPath()%>/qna_comment_insert_ok.do",
 				datatype : "text",
 				data : {
 						qcomment_num : ${dto.qna_num },
@@ -1104,7 +1109,7 @@ textarea {
 				
 				
 				$.ajax({
-					url : "/Project/qna_comment_modify_ok.do",
+					url : "<%=request.getContextPath()%>/qna_comment_modify_ok.do",
 					datatype : "text",
 					data : {
 						
@@ -1153,7 +1158,7 @@ textarea {
 				 if(confirm("해당 댓글을 삭제하시겠습니까?")){
 			$.ajax({
 				async : false,
-				url : "/Project/qna_comment_delete_ok.do",
+				url : "<%=request.getContextPath()%>/qna_comment_delete_ok.do",
 				data : "no="+$(this).attr("num"),
 				datatype : "text",
 				success : function(data) {
@@ -1193,7 +1198,7 @@ textarea {
 		
 		$.ajax({
 			async : false,
-			url : "/Project/qna_comment_good_ok.do",
+			url : "<%=request.getContextPath()%>/qna_comment_good_ok.do",
 			datatype : "text",
 			data : "no="+$(this).attr("num"),
 				
@@ -1234,7 +1239,7 @@ textarea {
 		
 		$.ajax({
 			async : false,
-			url : "/Project/qna_comment_bad_ok.do",
+			url : "<%=request.getContextPath()%>/qna_comment_bad_ok.do",
 			datatype : "text",
 			data : "no="+$(this).attr("num"),
 				
