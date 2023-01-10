@@ -612,7 +612,7 @@ body .badge {
 		
 		$.ajax({
 			async : false,
-			url : "/Project/study/studyboard_reply.jsp",
+			url : "<%=request.getContextPath()%>/study/studyboard_reply.jsp",
 			data : {scomment_num : ${dto.study_num } },
 			datatype : "xml",    // 결과 데이터 타입
 			success : function(data) {
@@ -694,7 +694,7 @@ body .badge {
 		if(${!empty userId}){
 		
 		$.ajax({
-			url : "/Project/studyboard_reply_insert.do",
+			url : "<%=request.getContextPath()%>/studyboard_reply_insert.do",
 			datatype : "text",
 			data : {
 					
@@ -738,9 +738,6 @@ body .badge {
 	// 수정버튼 클릭 시 댓글 수정.
      $(document).on("click", "#modifyBtn", function(){
 
-    	 
-		console.log('성공');
-		
 		if(this.textContent == '수정'){	
 			  
 		
@@ -753,8 +750,6 @@ body .badge {
          //수정 버튼 클릭 시 div태그를 숨기는 코드 (this는 modifyBtn )	
          this.parentNode.parentNode.nextSibling.nextSibling.childNodes[0].childNodes[0].hidden = true;
 
-         console.log('if문 성공');
-         
          
          //수정 버튼 클릭시 수정완료, 취소버튼으로 변경하는 코드
          //this.setAttribute('value', '수정완료');
@@ -769,10 +764,8 @@ body .badge {
          //수정완료 버튼을 눌렀을 때 수정한 글이 저장되는 코드.
          if(this.textContent == '수정완료' ){
 			 
-			console.log('if수정완료문 성공');
-			
 			$.ajax({
-				url : "/Project/studyboard_reply_modify.do",
+				url : "<%=request.getContextPath()%>/studyboard_reply_modify.do",
 				datatype : "text",
 				data : {
 					content : this.parentNode.parentNode.nextSibling.nextSibling.childNodes[0].childNodes[1].value,  //input태그 value
@@ -811,13 +804,10 @@ body .badge {
   //삭제버튼 클릭 시 이벤트
   $(document).on("click", "#deleteBtn", function(){
 	  
-	  console.log('취소까지 옴');
-	  
-	  
 	  if(this.textContent == '삭제'){
 	  if(confirm("해당 댓글을 삭제하시겠습니까?")){
 		  $.ajax({
-			  url : "/Project/studyboard_reply_delete.do",
+			  url : "<%=request.getContextPath()%>/studyboard_reply_delete.do",
 			  datatype:"text",
 			  data:{
 				  scomment_num : this.parentNode.parentNode.childNodes[2].childNodes[0].textContent   //scomment_num 
@@ -863,8 +853,6 @@ body .badge {
 	      // input 태그에 입력된 내용을 지워줌.
 				this.parentNode.parentNode.nextSibling.nextSibling.childNodes[0].childNodes[1].value =
 					$(this.parentNode.parentNode.nextSibling.nextSibling.childNodes[0].childNodes[0]).text();
-	         
-	         console.log('if문 성공');
 	         
 	         //취소 버튼 클릭시 수정, 삭제버튼으로 변경하는 코드
 	         $(this).html('삭제');
